@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette';
 
 //Component for selection using buttons
 export const DropDownSelector = ({propertyName, options, state, setState})=> {
@@ -77,3 +78,68 @@ export const ButtonSelector = ({propertyName, options}) => {
         </div>
     )
 }
+
+
+//Component for getting input value from user
+export const InputBox = ({ propertyName }) => {
+  return (
+    <div style={{
+      marginBottom: 10 
+    }}>
+      <label 
+        style={{ fontWeight: "normal", display: "block", marginBottom: 6 }}
+      >
+        {propertyName}
+      </label>
+      <input
+          placeholder="px"
+          type="number"
+          style={{
+            width:"100%",
+            padding: 8,
+            borderRadius: 6,
+            border: "none",
+            backgroundColor: "#ccc",
+            fontWeight: "bold",
+            fontSize: 16,
+            boxSizing: "border-box"
+          }}
+        />
+    </div>
+  );
+};
+
+export const InputBoxSmall = ({ propertyName }) => {
+  return (
+    <div style={{
+      marginBottom: 10,
+      display: 'flex',
+      justifyContent: 'space-between',
+      width: "45%",
+      alignItems: 'center',
+      gap: 8,
+      paddingRight: 10
+    }}>
+      <label 
+        style={{ fontWeight: "normal", display: "block"}}
+      >
+        {propertyName}
+      </label>
+      <input
+          placeholder="px"
+          type="number"
+          style={{
+            width:"60%",
+            padding: 8,
+            borderRadius: 6,
+            border: "none",
+            backgroundColor: "#ccc",
+            fontWeight: "bold",
+            fontSize: 16,
+            boxSizing: "border-box"
+          }}
+      />
+    </div>
+  );
+};
+

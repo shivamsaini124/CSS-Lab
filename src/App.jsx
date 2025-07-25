@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { ButtonSelector, DropDownSelector } from "./components/selector";
 import { LayoutOptions } from "./components/layout";
+import "./App.css";
+import { SizingOptions } from "./components/sizing";
 
 
 export default function App() {
@@ -60,7 +62,24 @@ export default function App() {
         </div>
 
         {/* Panel container */}
-        <LayoutOptions/>
+        <div
+          className="container" 
+          style={{
+            maxHeight:500, 
+            overflowY:"scroll",
+            backgroundColor: "white",
+            borderRadius: 6,
+            boxShadow: "0 0 2px rgba(0,0,0,0.1)",
+            padding: 10,
+            fontWeight: "bold",
+            fontSize: 14,
+            color: "#000",
+          }}
+        >
+          <LayoutOptions/>
+          <SizingOptions/>
+        </div>
+        
 
         {/* Bottom button */}
         <button

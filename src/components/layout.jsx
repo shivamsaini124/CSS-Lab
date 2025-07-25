@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { DropDownSelector, ButtonSelector } from "./selector";
+import { DropDownSelector, ButtonSelector, InputBox} from "./selector";
 
 const FlexLayoutOptions = () => {
     const options = {
@@ -30,6 +30,9 @@ const FlexLayoutOptions = () => {
 
         {/* Wrap */}
         <DropDownSelector propertyName={"Wrap"} options={options.wrap}/>
+
+        {/* Gap */}
+         <InputBox propertyName={"Gap"}/>
     </div>)
     
 }
@@ -41,15 +44,7 @@ export const LayoutOptions = ()=> {
     const [display, setDisplay] = useState(options.display[0]);
 
     return (
-        <div style={{
-            backgroundColor: "white",
-            borderRadius: 6,
-            boxShadow: "0 0 2px rgba(0,0,0,0.1)",
-            padding: 10,
-            fontWeight: "bold",
-            fontSize: 14,
-            color: "#000",
-          }}>
+        <div>
             {/* Layout Header */}
             <div
             style={{
