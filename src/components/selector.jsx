@@ -81,10 +81,11 @@ export const ButtonSelector = ({propertyName, options}) => {
 
 
 //Component for getting input value from user
-export const InputBox = ({ propertyName }) => {
+export const InputBox = ({ propertyName , style}) => {
   return (
     <div style={{
-      marginBottom: 10 
+      marginBottom: 10 ,
+      ...style
     }}>
       <label 
         style={{ fontWeight: "normal", display: "block", marginBottom: 6 }}
@@ -109,16 +110,17 @@ export const InputBox = ({ propertyName }) => {
   );
 };
 
-export const InputBoxSmall = ({ propertyName }) => {
+export const InputBoxSmall = ({ propertyName, style }) => {
   return (
     <div style={{
-      marginBottom: 10,
+      marginBottom: 5,
       display: 'flex',
       justifyContent: 'space-between',
       width: "45%",
       alignItems: 'center',
       gap: 8,
-      paddingRight: 10
+      paddingRight: 10,
+      ...style
     }}>
       <label 
         style={{ fontWeight: "normal", display: "block"}}

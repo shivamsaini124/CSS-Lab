@@ -1,23 +1,17 @@
+import { Title } from "./extras"
 import { InputBoxSmall } from "./selector"
 
 export const SizingOptions = () => {
     return (
         <div>
             {/* Sizing Header */}
-            <div
-            style={{
-                borderBottom: "1px solid #ddd",
-                paddingBottom: 5,
-                marginBottom: 10,
-            }}
-            >
-            Sizing
-            </div>
+            <Title sectionName={"Sizing"}/>
             
             <InputBoxSmall propertyName={"Height"}/>
             <div style={{
                 display:"flex",
-                justifyContent: "space-between"
+                justifyContent: "space-between",
+                marginBottom: 10
             }}>
                 <InputBoxSmall propertyName={"Max"}/>
                 <InputBoxSmall propertyName={"Min"}/>
@@ -27,7 +21,8 @@ export const SizingOptions = () => {
             <InputBoxSmall propertyName={"Width"}/>
             <div style={{
                 display:"flex",
-                justifyContent: "space-between"
+                justifyContent: "space-between",
+                marginBottom: 10
             }}>
                 <InputBoxSmall propertyName={"Max"}/>
                 <InputBoxSmall propertyName={"Min"}/>

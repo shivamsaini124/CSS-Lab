@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { DropDownSelector, ButtonSelector, InputBox} from "./selector";
+import { Title } from "./extras"
 
 const FlexLayoutOptions = () => {
     const options = {
@@ -46,15 +47,7 @@ export const LayoutOptions = ()=> {
     return (
         <div>
             {/* Layout Header */}
-            <div
-            style={{
-                borderBottom: "1px solid #ddd",
-                paddingBottom: 5,
-                marginBottom: 10,
-            }}
-            >
-            Layout
-            </div>
+            <Title sectionName={"Layout"}/>
 
             {/* Display */}
             <DropDownSelector propertyName={"Display"} options={options.display} state={display} setState={setDisplay}/>

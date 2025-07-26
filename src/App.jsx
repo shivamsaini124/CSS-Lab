@@ -3,6 +3,7 @@ import { ButtonSelector, DropDownSelector } from "./components/selector";
 import { LayoutOptions } from "./components/layout";
 import "./App.css";
 import { SizingOptions } from "./components/sizing";
+import { SpacingOptions } from "./components/spacing";
 
 
 export default function App() {
@@ -78,6 +79,7 @@ export default function App() {
         >
           <LayoutOptions/>
           <SizingOptions/>
+          <SpacingOptions/>
         </div>
         
 
