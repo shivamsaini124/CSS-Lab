@@ -1,105 +1,87 @@
 import React, { useState } from "react";
 import { ButtonSelector, DropDownSelector } from "./components/selector";
 import { LayoutOptions } from "./components/layout";
-import "./App.css";
 import { SizingOptions } from "./components/sizing";
 import { SpacingOptions } from "./components/spacing";
-
+import "./App.css";
 
 export default function App() {
+  const [projectName, setProjectName] = useState("");
+  const [darkMode, setDarkMode] = useState(false);
+  const [selectedElement, setSelectedElement] = useState("");
+  // Placeholder for generated CSS
+  const [cssCode] = useState("/* CSS code will appear here */");
+
   return (
-    <div
-      style={{
-        backgroundColor: "#b9d1f9",
-        minHeight: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        padding: 20,
-        fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-      }}
-    >
-      <div
-        style={{
-          width: 320,
-          borderRadius: 10,
-          boxSizing: "border-box",
-        }}
-      >
-        {/* Dropdown at top */}
-        <select
-          style={{
-            width: "100%",
-            padding: 10,
-            borderRadius: 6,
-            border: "none",
-            marginBottom: 20,
-            fontSize: 16,
-            fontWeight: 500,
-          }}
-          defaultValue=""
-        >
-          <option value="" disabled>
-            Select the element to style
-          </option>
-          <option>Element 1</option>
-          <option>Element 2</option>
-        </select>
-
-        {/* White box with rounded top left */}
-        <div
-          style={{
-            backgroundColor: "white",
-            borderRadius: "30px 0 0 0",
-            padding: "20px 15px",
-            boxSizing: "border-box",
-            fontWeight: "bold",
-            marginBottom: 10,
-            fontSize: 18,
-            color: "#00234a",
-          }}
-        >
-          CSS Options
+    <div className={"app-container"} style={darkMode ? { background: "#222" } : {}}>
+      {/* Header */}
+      <header className="app-header">
+        <div className="logo-section">
+          <div className="logo-circle" />
+          <span className="logo-text">CSS Labs</span>
         </div>
-
-        {/* Panel container */}
-        <div
-          className="container" 
-          style={{
-            maxHeight:500, 
-            overflowY:"scroll",
-            backgroundColor: "white",
-            borderRadius: 6,
-            boxShadow: "0 0 2px rgba(0,0,0,0.1)",
-            padding: 10,
-            fontWeight: "bold",
-            fontSize: 14,
-            color: "#000",
-          }}
-        >
-          <LayoutOptions/>
-          <SizingOptions/>
-          <SpacingOptions/>
-        </div>
-        
-
-        {/* Bottom button */}
+        <input
+          className="project-input"
+          type="text"
+          placeholder="Project Name"
+          value={projectName}
+          onChange={e => setProjectName(e.target.value)}
+        />
         <button
-          style={{
-            width: "100%",
-            marginTop: 20,
-            padding: 15,
-            backgroundColor: "#00234a",
-            borderRadius: 12,
-            color: "white",
-            fontWeight: "bold",
-            fontSize: 18,
-            border: "none",
-            cursor: "pointer",
-          }}
+          className="dark-mode-toggle"
+          onClick={() => setDarkMode(dm => !dm)}
         >
-          Generate CSS
+          {darkMode ? "Light mode" : "Dark mode"}
         </button>
+      </header>
+
+      {/* Main Content */}
+      <div className="main-content">
+        {/* Left Column: Preview + Code Panel */}
+        <div className="left-column">
+          <div className="preview-area">
+            <div className="preview-box" />
+          </div>
+          {/* CSS Code Panel at the bottom left */}
+          <div className="code-panel">
+            <div className="code-header">CSS Code</div>
+            <div className="code-output">
+              <pre style={{ margin: 0, color: "#fff" }}>{cssCode}</pre>
+            </div>
+          </div>
+        </div>
+        {/* Sidebar (CSS Generator) */}
+        <div className="sidebar-column">
+          <aside className="sidebar">
+            <div>
+              <select
+                className="select-element"
+                value={selectedElement}
+                onChange={e => setSelectedElement(e.target.value)}
+              >
+                <option value="" disabled>
+                  Select the element to style
+                </option>
+                <option value="element1">Element 1</option>
+                <option value="element2">Element 2</option>
+              </select>
+            </div>
+            <div className="css-options-container">
+              <div className="css-options-header">CSS Options</div>
+              <div className="css-section">
+                <LayoutOptions />
+                <div style={{ borderTop: "1px solid #eee", margin: "16px 0" }} />
+                <SizingOptions />
+                <div style={{ borderTop: "1px solid #eee", margin: "16px 0" }} />
+                <SpacingOptions />
+                {/* Add Position and Border sections here if needed */}
+              </div>
+            </div>
+            <button className="generate-css-btn">
+              Generate CSS
+            </button>
+          </aside>
+        </div>
       </div>
     </div>
   );

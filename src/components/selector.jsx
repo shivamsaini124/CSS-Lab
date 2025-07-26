@@ -1,147 +1,141 @@
-import {useState} from 'react';
-import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette';
+import { useState } from "react";
 
-//Component for selection using buttons
-export const DropDownSelector = ({propertyName, options, state, setState})=> {
-    let property, setProperty;
-    if(state === undefined || setState === undefined){
-        [property, setProperty] = useState(options[0]);
-    }
-    else{
-        property = state;
-        setProperty = setState;
-    }
-    
+// 🔽 Dropdown Selector Component
+export const DropDownSelector = ({ propertyName, options, state, setState }) => {
+  const [localValue, setLocalValue] = useState(options[0]);
+  const value = state !== undefined ? state : localValue;
+  const handleChange = (e) => {
+    const val = e.target.value;
+    setState ? setState(val) : setLocalValue(val);
+  };
 
-    return (
-        <div style={{ marginBottom: 10 }}>
-            <label
-                style={{ fontWeight: "normal", display: "block", marginBottom: 6 }}
-            >
-                {propertyName}
-            </label>
-            <select
-                value={property}
-                onChange={(e) => setProperty(e.target.value)}
-                style={{
-                width: "100%",
-                padding: 8,
-                borderRadius: 6,
-                border: "none",
-                backgroundColor: "#ccc",
-                fontWeight: "bold",
-                fontSize: 16,
-                }}
-            >
-                {options.map((opt) => (
-                <option key={opt} value={opt}>
-                    {opt}
-                </option>
-                ))}
-            </select>
-        </div>
-    );
-    
-}
-
-//Component for selection using buttons
-export const ButtonSelector = ({propertyName, options}) => {
-    const [property, setProperty] = useState(options[0].value);
-
-    return (
-        <div style={{ marginBottom: 10 }}>
-            <label
-              style={{ fontWeight: "normal", display: "block", marginBottom: 6 }}
-            >
-              {propertyName}
-            </label>
-            <div style={{ display: "flex", gap: 10 }}>
-              {options.map(({ icon, value }) => (
-                <button
-                  key={value}
-                  onClick={() => setProperty(value)}
-                  style={{
-                    padding: 8,
-                    borderRadius: 6,
-                    border: "none",
-                    fontSize: 20,
-                    width:35,
-                    backgroundColor: property === value ? "#ccc" : "#eee",
-                    cursor: "pointer",
-                    userSelect: "none",
-                  }}
-                >
-                  {icon}
-                </button>
-              ))}
-            </div>
-        </div>
-    )
-}
-
-
-//Component for getting input value from user
-export const InputBox = ({ propertyName , style}) => {
   return (
-    <div style={{
-      marginBottom: 10 ,
-      ...style
-    }}>
-      <label 
-        style={{ fontWeight: "normal", display: "block", marginBottom: 6 }}
-      >
+    <div style={{ marginBottom: 10 }}>
+      <label style={{ fontWeight: "normal", display: "block", marginBottom: 6 }}>
         {propertyName}
       </label>
-      <input
-          placeholder="px"
-          type="number"
-          style={{
-            width:"100%",
-            padding: 8,
-            borderRadius: 6,
-            border: "none",
-            backgroundColor: "#ccc",
-            fontWeight: "bold",
-            fontSize: 16,
-            boxSizing: "border-box"
-          }}
-        />
+      <select
+        value={value}
+        onChange={handleChange}
+        style={{
+          width: "100%",
+          padding: 8,
+          borderRadius: 6,
+          border: "none",
+          backgroundColor: "#ccc",
+          fontWeight: "bold",
+          fontSize: 16,
+          color: "#000",
+        }}
+      >
+        {options.map((opt) => (
+          <option key={opt} value={opt} style={{ color: "#000" }}>
+            {opt}
+          </option>
+        ))}
+      </select>
     </div>
   );
 };
 
-export const InputBoxSmall = ({ propertyName, style }) => {
+// 🔘 Button Selector Component
+export const ButtonSelector = ({ propertyName, options, state, setState }) => {
+  const [localValue, setLocalValue] = useState(options[0].value);
+  const value = state !== undefined ? state : localValue;
+  const handleClick = (val) => {
+    setState ? setState(val) : setLocalValue(val);
+  };
+
   return (
-    <div style={{
-      marginBottom: 5,
-      display: 'flex',
-      justifyContent: 'space-between',
-      width: "45%",
-      alignItems: 'center',
-      gap: 8,
-      paddingRight: 10,
-      ...style
-    }}>
-      <label 
-        style={{ fontWeight: "normal", display: "block"}}
-      >
+    <div style={{ marginBottom: 10 }}>
+      <label style={{ fontWeight: "normal", display: "block", marginBottom: 6 }}>
+        {propertyName}
+      </label>
+      <div style={{ display: "flex", gap: 10 }}>
+        {options.map(({ icon, value }) => (
+          <button
+            key={value}
+            onClick={() => handleClick(value)}
+            style={{
+              padding: 8,
+              borderRadius: 6,
+              border: "none",
+              fontSize: 20,
+              width: 35,
+              backgroundColor: value === value ? "#ccc" : "#eee",
+              cursor: "pointer",
+              userSelect: "none",
+            }}
+          >
+            {icon}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+// 🔲 Standard Input Box
+export const InputBox = ({ propertyName, value, onChange, style }) => {
+  return (
+    <div style={{ marginBottom: 10, ...style }}>
+      <label style={{ fontWeight: "normal", display: "block", marginBottom: 6 }}>
         {propertyName}
       </label>
       <input
-          placeholder="px"
-          type="number"
-          style={{
-            width:"60%",
-            padding: 8,
-            borderRadius: 6,
-            border: "none",
-            backgroundColor: "#ccc",
-            fontWeight: "bold",
-            fontSize: 16,
-            boxSizing: "border-box"
-          }}
+        type="number"
+        value={value}
+        onChange={onChange}
+        placeholder="px"
+        style={{
+          width: "100%",
+          padding: 8,
+          borderRadius: 6,
+          border: "none",
+          backgroundColor: "#ccc",
+          fontWeight: "bold",
+          fontSize: 16,
+          color: "#000",
+          boxSizing: "border-box",
+        }}
       />
     </div>
   );
 };
 
+// 🔳 Small Input Box
+export const InputBoxSmall = ({ propertyName, value, onChange, style }) => {
+  return (
+    <div
+      style={{
+        marginBottom: 5,
+        display: "flex",
+        justifyContent: "space-between",
+        width: "45%",
+        alignItems: "center",
+        gap: 8,
+        paddingRight: 10,
+        ...style,
+      }}
+    >
+      <label style={{ fontWeight: "normal" }}>{propertyName}</label>
+      <input
+        type="number"
+        value={value}
+        onChange={onChange}
+        placeholder="px"
+        style={{
+          width: "60%",
+          padding: 8,
+          borderRadius: 6,
+          border: "none",
+          backgroundColor: "#ccc",
+          fontWeight: "bold",
+          fontSize: 16,
+          color: "#000",
+          boxSizing: "border-box",
+        }}
+      />
+    </div>
+  );
+};

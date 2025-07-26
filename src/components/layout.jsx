@@ -1,7 +1,8 @@
-import { useState } from "react"
-import { DropDownSelector, ButtonSelector, InputBox} from "./selector";
-import { Title } from "./extras"
+import { useState } from "react";
+import { DropDownSelector, ButtonSelector, InputBox } from "./selector";
+import { Title } from "./extras";
 
+// Flexbox layout options component
 const FlexLayoutOptions = () => {
     const options = {
         justifyContent: ["Center", "Start", "End", "Space Between"],
@@ -16,47 +17,56 @@ const FlexLayoutOptions = () => {
         ]
     };
 
-    return(<div>
-        {/* Direction */}
-        <ButtonSelector propertyName={"Direction"} options={options.directions}/>
+    return (
+        <div>
+            <ButtonSelector propertyName={"Direction"} options={options.directions} />
+            <DropDownSelector propertyName={"Justify Content"} options={options.justifyContent} />
+            <DropDownSelector propertyName={"Align Item"} options={options.alignItem} />
+            <DropDownSelector propertyName={"Align Content"} options={options.alignContent} />
+            <DropDownSelector propertyName={"Wrap"} options={options.wrap} />
+            <InputBox propertyName={"Gap"} />
+        </div>
+    );
+};
 
-        {/* Justify Content */}
-        <DropDownSelector propertyName={"Justify Content"} options={options.justifyContent}/>
+// Grid layout options component
+const GridLayoutOptions = () => {
+    const options = {
+        gridTemplateColumns: ["1fr 1fr", "repeat(3, 1fr)", "auto auto", "100px 1fr"],
+        gridTemplateRows: ["auto", "1fr 2fr", "repeat(2, 100px)", "minmax(100px, auto)"],
+        justifyItems: ["start", "center", "end", "stretch"],
+        alignItems: ["start", "center", "end", "stretch"]
+    };
 
-        {/* Align Item */}
-        <DropDownSelector propertyName={"Align Item"} options={options.alignItem}/>
+    return (
+        <div>
+            <DropDownSelector propertyName={"Grid Template Columns"} options={options.gridTemplateColumns} />
+            <DropDownSelector propertyName={"Grid Template Rows"} options={options.gridTemplateRows} />
+            <DropDownSelector propertyName={"Justify Items"} options={options.justifyItems} />
+            <DropDownSelector propertyName={"Align Items"} options={options.alignItems} />
+            <InputBox propertyName={"Gap"} />
+        </div>
+    );
+};
 
-        {/* Align Content */}
-        <DropDownSelector propertyName={"Align Content"} options={options.alignContent}/>
-
-        {/* Wrap */}
-        <DropDownSelector propertyName={"Wrap"} options={options.wrap}/>
-
-        {/* Gap */}
-         <InputBox propertyName={"Gap"}/>
-    </div>)
-    
-}
-
-export const LayoutOptions = ()=> {
+// Main LayoutOptions component
+export const LayoutOptions = () => {
     const options = {
         display: ["flex", "block", "grid", "inline"]
-    }
+    };
     const [display, setDisplay] = useState(options.display[0]);
 
     return (
         <div>
-            {/* Layout Header */}
-            <Title sectionName={"Layout"}/>
-
-            {/* Display */}
-            <DropDownSelector propertyName={"Display"} options={options.display} state={display} setState={setDisplay}/>
-
-            {(display === "flex") ?
-                <FlexLayoutOptions/>
-                : null
-            }
+            <Title sectionName={"Layout"} />
+            <DropDownSelector
+                propertyName={"Display"}
+                options={options.display}
+                state={display}
+                setState={setDisplay}
+            />
+            {display === "flex" && <FlexLayoutOptions />}
+            {display === "grid" && <GridLayoutOptions />}
         </div>
-        
-    )
-}
+    );
+};
