@@ -7,7 +7,7 @@ import "./App.css";
 
 export default function App() {
   const [projectName, setProjectName] = useState("");
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(localStorage.getItem("darkMode")? true :false);
   const [selectedElement, setSelectedElement] = useState("");
   // Placeholder for generated CSS
   const [cssCode] = useState("/* CSS code will appear here */");
@@ -39,6 +39,7 @@ export default function App() {
         <button
           className="dark-mode-toggle"
           onClick={() => setDarkMode((dm) => {
+            localStorage.setItem("darkMode", !dm);
             return !dm
           })}
         >
