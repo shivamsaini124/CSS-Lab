@@ -161,8 +161,8 @@ body.dark-mode {
   display: flex;
   flex-direction: column;
   height: 100%;
-  min-width: 280px;
-  width: 280px;
+  min-width: 395px;
+  width: 30%;
   background: #c7e0ff;
   box-sizing: border-box;
   overflow: hidden;
