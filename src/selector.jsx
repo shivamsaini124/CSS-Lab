@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 // 🔽 Dropdown Selector Component
-export const DropDownSelector = ({ propertyName, options, state, setState }) => {
+export const DropDownSelector = ({ propertyName, options, state, setState, darkMode = false }) => {
   const [localValue, setLocalValue] = useState(options[0]);
   const value = state !== undefined ? state : localValue;
   const handleChange = (e) => {
@@ -11,7 +11,13 @@ export const DropDownSelector = ({ propertyName, options, state, setState }) => 
 
   return (
     <div style={{ marginBottom: 10 }}>
-      <label style={{ fontWeight: "normal", display: "block", marginBottom: 6 }}>
+      <label style={{ 
+        fontWeight: "normal", 
+        display: "block", 
+        marginBottom: 6,
+        color: darkMode ? "#fff" : "#000",
+        transition: "color 0.3s ease"
+      }}>
         {propertyName}
       </label>
       <select
@@ -22,14 +28,18 @@ export const DropDownSelector = ({ propertyName, options, state, setState }) => 
           padding: 8,
           borderRadius: 6,
           border: "none",
-          backgroundColor: "#ccc",
+          backgroundColor: darkMode ? "#4a5568" : "#ccc",
           fontWeight: "bold",
           fontSize: 16,
-          color: "#000",
+          color: darkMode ? "#fff" : "#000",
+          transition: "background-color 0.3s ease, color 0.3s ease"
         }}
       >
         {options.map((opt) => (
-          <option key={opt} value={opt} style={{ color: "#000" }}>
+          <option key={opt} value={opt} style={{ 
+            color: darkMode ? "#fff" : "#000",
+            backgroundColor: darkMode ? "#4a5568" : "#ccc"
+          }}>
             {opt}
           </option>
         ))}
@@ -39,7 +49,7 @@ export const DropDownSelector = ({ propertyName, options, state, setState }) => 
 };
 
 // 🔘 Button Selector Component
-export const ButtonSelector = ({ propertyName, options, state, setState }) => {
+export const ButtonSelector = ({ propertyName, options, state, setState, darkMode = false }) => {
   const [localValue, setLocalValue] = useState(options[0].value);
   const value = state !== undefined ? state : localValue;
   const handleClick = (val) => {
@@ -48,23 +58,33 @@ export const ButtonSelector = ({ propertyName, options, state, setState }) => {
 
   return (
     <div style={{ marginBottom: 10 }}>
-      <label style={{ fontWeight: "normal", display: "block", marginBottom: 6 }}>
+      <label style={{ 
+        fontWeight: "normal", 
+        display: "block", 
+        marginBottom: 6,
+        color: darkMode ? "#fff" : "#000",
+        transition: "color 0.3s ease"
+      }}>
         {propertyName}
       </label>
       <div style={{ display: "flex", gap: 10 }}>
-        {options.map(({ icon, value }) => (
+        {options.map(({ icon, value: optionValue }) => (
           <button
-            key={value}
-            onClick={() => handleClick(value)}
+            key={optionValue}
+            onClick={() => handleClick(optionValue)}
             style={{
               padding: 8,
               borderRadius: 6,
               border: "none",
               fontSize: 20,
               width: 35,
-              backgroundColor: value === value ? "#ccc" : "#eee",
+              backgroundColor: optionValue === value 
+                ? (darkMode ? "#2d3748" : "#ccc") 
+                : (darkMode ? "#4a5568" : "#eee"),
+              color: darkMode ? "#fff" : "#000",
               cursor: "pointer",
               userSelect: "none",
+              transition: "background-color 0.3s ease, color 0.3s ease"
             }}
           >
             {icon}
@@ -76,10 +96,16 @@ export const ButtonSelector = ({ propertyName, options, state, setState }) => {
 };
 
 // 🔲 Standard Input Box
-export const InputBox = ({ propertyName, value, onChange, style }) => {
+export const InputBox = ({ propertyName, value, onChange, style, darkMode = false }) => {
   return (
     <div style={{ marginBottom: 10, ...style }}>
-      <label style={{ fontWeight: "normal", display: "block", marginBottom: 6 }}>
+      <label style={{ 
+        fontWeight: "normal", 
+        display: "block", 
+        marginBottom: 6,
+        color: darkMode ? "#fff" : "#000",
+        transition: "color 0.3s ease"
+      }}>
         {propertyName}
       </label>
       <input
@@ -92,11 +118,12 @@ export const InputBox = ({ propertyName, value, onChange, style }) => {
           padding: 8,
           borderRadius: 6,
           border: "none",
-          backgroundColor: "#ccc",
+          backgroundColor: darkMode ? "#4a5568" : "#ccc",
           fontWeight: "bold",
           fontSize: 16,
-          color: "#000",
+          color: darkMode ? "#fff" : "#000",
           boxSizing: "border-box",
+          transition: "background-color 0.3s ease, color 0.3s ease"
         }}
       />
     </div>
@@ -104,7 +131,7 @@ export const InputBox = ({ propertyName, value, onChange, style }) => {
 };
 
 // 🔳 Small Input Box
-export const InputBoxSmall = ({ propertyName, value, onChange, style }) => {
+export const InputBoxSmall = ({ propertyName, value, onChange, style, darkMode = false }) => {
   return (
     <div
       style={{
@@ -118,7 +145,13 @@ export const InputBoxSmall = ({ propertyName, value, onChange, style }) => {
         ...style,
       }}
     >
-      <label style={{ fontWeight: "normal" }}>{propertyName}</label>
+      <label style={{ 
+        fontWeight: "normal",
+        color: darkMode ? "#fff" : "#000",
+        transition: "color 0.3s ease"
+      }}>
+        {propertyName}
+      </label>
       <input
         type="number"
         value={value}
@@ -129,11 +162,12 @@ export const InputBoxSmall = ({ propertyName, value, onChange, style }) => {
           padding: 8,
           borderRadius: 6,
           border: "none",
-          backgroundColor: "#ccc",
+          backgroundColor: darkMode ? "#4a5568" : "#ccc",
           fontWeight: "bold",
           fontSize: 16,
-          color: "#000",
+          color: darkMode ? "#fff" : "#000",
           boxSizing: "border-box",
+          transition: "background-color 0.3s ease, color 0.3s ease"
         }}
       />
     </div>

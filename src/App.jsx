@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { ButtonSelector, DropDownSelector } from "./components/selector";
-import { LayoutOptions } from "./components/layout";
-import { SizingOptions } from "./components/sizing";
-import { SpacingOptions } from "./components/spacing";
+import React, { useState, useEffect } from "react";
+import { ButtonSelector, DropDownSelector } from "./selector.jsx";
+import { LayoutOptions } from "./layout.jsx";
+import { SizingOptions } from "./sizing.jsx";
+import { SpacingOptions } from "./spacing.jsx";
 import "./App.css";
 
 export default function App() {
@@ -12,8 +12,17 @@ export default function App() {
   // Placeholder for generated CSS
   const [cssCode] = useState("/* CSS code will appear here */");
 
+  // Effect to manage body class for dark mode
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
+  }, [darkMode]);
+
   return (
-    <div className={"app-container"} style={darkMode ? { background: "#222" } : {}}>
+    <div className={`app-container ${darkMode ? 'dark-mode' : ''}`}>
       {/* Header */}
       <header className="app-header">
         <div className="logo-section">
@@ -69,11 +78,11 @@ export default function App() {
             <div className="css-options-container">
               <div className="css-options-header">CSS Options</div>
               <div className="css-section">
-                <LayoutOptions />
-                <div style={{ borderTop: "1px solid #eee", margin: "16px 0" }} />
-                <SizingOptions />
-                <div style={{ borderTop: "1px solid #eee", margin: "16px 0" }} />
-                <SpacingOptions />
+                <LayoutOptions darkMode={darkMode} />
+                <div style={{ borderTop: darkMode ? "1px solid #4a5568" : "1px solid #eee", margin: "16px 0", transition: "border-color 0.3s ease" }} />
+                <SizingOptions darkMode={darkMode} />
+                <div style={{ borderTop: darkMode ? "1px solid #4a5568" : "1px solid #eee", margin: "16px 0", transition: "border-color 0.3s ease" }} />
+                <SpacingOptions darkMode={darkMode} />
                 {/* Add Position and Border sections here if needed */}
               </div>
             </div>

@@ -2,12 +2,19 @@ body {
   margin: 0;
   font-family: "Segoe UI", sans-serif;
   background-color: #f9f9f9;
+  transition: background-color 0.3s ease;
+}
+
+/* Dark mode body styles */
+body.dark-mode {
+  background-color: #1a1a1a;
 }
 
 .app-container {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  transition: background-color 0.3s ease;
 }
 
 .app-header {
@@ -17,6 +24,13 @@ body {
   padding: 8px 12px;
   background: white;
   border-bottom: 1px solid #ddd;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Dark mode header styles */
+.app-container.dark-mode .app-header {
+  background: #2d2d2d;
+  border-bottom: 1px solid #444;
 }
 
 .logo-section {
@@ -30,11 +44,23 @@ body {
   height: 18px;
   border-radius: 50%;
   background: black;
+  transition: background-color 0.3s ease;
+}
+
+/* Dark mode logo styles */
+.app-container.dark-mode .logo-circle {
+  background: white;
 }
 
 .logo-text {
   font-weight: bold;
   font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+/* Dark mode logo text styles */
+.app-container.dark-mode .logo-text {
+  color: white;
 }
 
 .project-input {
@@ -44,6 +70,17 @@ body {
   padding: 2px 6px;
   outline: none;
   background: transparent;
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark mode project input styles */
+.app-container.dark-mode .project-input {
+  border-bottom: 1px solid white;
+  color: white;
+}
+
+.app-container.dark-mode .project-input::placeholder {
+  color: #ccc;
 }
 
 .dark-mode-toggle {
@@ -55,6 +92,17 @@ body {
   font-size: 13px;
   font-weight: 500;
   box-shadow: 0 2px 8px #0001;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark mode toggle button styles */
+.app-container.dark-mode .dark-mode-toggle {
+  background: #444;
+  color: white;
+}
+
+.app-container.dark-mode .dark-mode-toggle:hover {
+  background: #555;
 }
 
 .main-content {
@@ -82,6 +130,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+/* Dark mode preview area styles */
+.app-container.dark-mode .preview-area {
+  background: #1a1a1a;
 }
 
 .preview-box {
@@ -95,6 +149,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+/* Dark mode preview box styles */
+.app-container.dark-mode .preview-box {
+  background: #2a5a7a;
 }
 
 .sidebar-column {
@@ -108,6 +168,12 @@ body {
   overflow: hidden;
   flex-shrink: 0;
   min-height: 0;
+  transition: background-color 0.3s ease;
+}
+
+/* Dark mode sidebar styles */
+.app-container.dark-mode .sidebar-column {
+  background: #2d3748;
 }
 
 .sidebar {
@@ -133,6 +199,18 @@ body {
   background: #eaf3ff;
   margin-bottom: 10px;
   box-shadow: 0 2px 8px #0001;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark mode select element styles */
+.app-container.dark-mode .select-element {
+  background: #4a5568;
+  color: white;
+}
+
+.app-container.dark-mode .select-element option {
+  background: #4a5568;
+  color: white;
 }
 
 .css-options-container {
@@ -141,6 +219,12 @@ body {
   padding: 8px;
   margin-bottom: 10px;
   box-shadow: 0 2px 8px #0001;
+  transition: background-color 0.3s ease;
+}
+
+/* Dark mode CSS options container styles */
+.app-container.dark-mode .css-options-container {
+  background: #4a5568;
 }
 
 .css-options-header {
@@ -155,6 +239,13 @@ body {
   top: -10px;
   left: 8px;
   box-shadow: 0 2px 8px #0001;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark mode CSS options header styles */
+.app-container.dark-mode .css-options-header {
+  background: #2d3748;
+  color: white;
 }
 
 .css-section {
@@ -162,6 +253,13 @@ body {
   border-radius: 8px;
   background: #fff;
   padding: 8px;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Dark mode CSS section styles */
+.app-container.dark-mode .css-section {
+  background: #2d3748;
+  border-color: #4a5568;
 }
 
 .generate-css-btn {
@@ -182,6 +280,15 @@ body {
   background: #003366;
 }
 
+/* Dark mode generate CSS button styles */
+.app-container.dark-mode .generate-css-btn {
+  background-color: #1a365d;
+}
+
+.app-container.dark-mode .generate-css-btn:hover {
+  background: #2d5a8a;
+}
+
 .code-panel {
   background: #001f4d;
   color: white;
@@ -192,6 +299,13 @@ body {
   border-radius: 0;
   box-sizing: border-box;
   width: 100%;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Dark mode code panel styles */
+.app-container.dark-mode .code-panel {
+  background: #1a202c;
+  border-top: 1px solid #2d3748;
 }
 
 .code-header {
@@ -204,6 +318,12 @@ body {
   position: relative;
   top: -18px;
   left: 0;
+  transition: background-color 0.3s ease;
+}
+
+/* Dark mode code header styles */
+.app-container.dark-mode .code-header {
+  background: #1a202c;
 }
 
 .code-output {
@@ -211,4 +331,10 @@ body {
   height: 100%;
   padding: 12px;
   border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+/* Dark mode code output styles */
+.app-container.dark-mode .code-output {
+  background: #2d3748;
 }
