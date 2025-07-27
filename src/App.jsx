@@ -7,7 +7,7 @@ import "./App.css";
 
 export default function App() {
   const [projectName, setProjectName] = useState("");
-  const [darkMode, setDarkMode] = useState(localStorage.getItem("darkMode")? true :false);
+  const [darkMode, setDarkMode] = useState(localStorage.getItem("darkMode") === "true" ? true :false);
   const [selectedElement, setSelectedElement] = useState("");
   // Placeholder for generated CSS
   const [cssCode] = useState("/* CSS code will appear here */");
