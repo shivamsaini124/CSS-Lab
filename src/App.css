@@ -106,11 +106,17 @@ body.dark-mode {
 }
 
 .main-content {
+  background-color: #c7e0ff;
   display: flex;
   flex: 1;
   overflow: hidden;
   height: calc(100vh - 72px); /* header height */
   min-height: 0;
+  transition: background-color 0.3s ease;
+}
+
+.app-container.dark-mode .main-content {
+  background-color: #2d3748;
 }
 
 .left-column {
@@ -163,7 +169,6 @@ body.dark-mode {
   height: 100%;
   min-width: 395px;
   width: 30%;
-  background: #c7e0ff;
   box-sizing: border-box;
   overflow: hidden;
   flex-shrink: 0;
@@ -171,10 +176,6 @@ body.dark-mode {
   transition: background-color 0.3s ease;
 }
 
-/* Dark mode sidebar styles */
-.app-container.dark-mode .sidebar-column {
-  background: #2d3748;
-}
 
 .sidebar {
   flex: 1 1 0;
@@ -230,21 +231,20 @@ body.dark-mode {
 .css-options-header {
   font-weight: bold;
   font-size: 15px;
-  margin-bottom: 6px;
-  background: #fff;
-  border-radius: 10px 10px 0 0;
+  background: #e6f0ff;
+  border-radius: 15px 15px 0 0;
   padding: 6px 12px;
   display: inline-block;
   position: relative;
-  top: -10px;
-  left: 8px;
+  left: 20px;
+  width:90px;
   box-shadow: 0 2px 8px #0001;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Dark mode CSS options header styles */
 .app-container.dark-mode .css-options-header {
-  background: #2d3748;
+  background: #4a5568;
   color: white;
 }
 
@@ -309,15 +309,16 @@ body.dark-mode {
 }
 
 .code-header {
+  margin-top: 10px;
   font-weight: bold;
-  margin-bottom: 8px;
+  color:white;
   background: #001f4d;
   display: inline-block;
   padding: 4px 18px;
-  border-radius: 12px 12px 0 0;
+  border-radius: 15px 15px 0 0;
   position: relative;
-  top: -18px;
-  left: 0;
+  left: 20px;
+  width: 80px;
   transition: background-color 0.3s ease;
 }
 

@@ -6,7 +6,8 @@ export const Title = ({sectionName, darkMode = false}) => {
                 paddingBottom: 5,
                 marginBottom: 10,
                 color: darkMode ? "#fff" : "#000",
-                transition: "border-color 0.3s ease, color 0.3s ease"
+                transition: "border-color 0.3s ease, color 0.3s ease",
+                fontWeight: "bold"
             }}
         >
             {sectionName}

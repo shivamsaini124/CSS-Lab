@@ -38,7 +38,9 @@ export default function App() {
         />
         <button
           className="dark-mode-toggle"
-          onClick={() => setDarkMode(dm => !dm)}
+          onClick={() => setDarkMode((dm) => {
+            return !dm
+          })}
         >
           {darkMode ? "Light mode" : "Dark mode"}
         </button>
@@ -51,9 +53,9 @@ export default function App() {
           <div className="preview-area">
             <div className="preview-box" />
           </div>
+          <div className="code-header">CSS Code</div>
           {/* CSS Code Panel at the bottom left */}
           <div className="code-panel">
-            <div className="code-header">CSS Code</div>
             <div className="code-output">
               <pre style={{ margin: 0, color: "#fff" }}>{cssCode}</pre>
             </div>
@@ -75,8 +77,8 @@ export default function App() {
                 <option value="element2">Element 2</option>
               </select>
             </div>
+            <div className="css-options-header">CSS Options</div>
             <div className="css-options-container">
-              <div className="css-options-header">CSS Options</div>
               <div className="css-section">
                 <LayoutOptions darkMode={darkMode} />
                 <div style={{ borderTop: darkMode ? "1px solid #4a5568" : "1px solid #eee", margin: "16px 0", transition: "border-color 0.3s ease" }} />
