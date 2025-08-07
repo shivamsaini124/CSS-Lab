@@ -173,3 +173,47 @@ export const InputBoxSmall = ({ propertyName, value, onChange, style, darkMode =
     </div>
   );
 };
+
+export const ColorInputBoxSmall = ({propertyName, value, onChange, style, darkMode = false}) => {
+  return (
+    <div
+      style={{
+        marginBottom: 5,
+        display: "flex",
+        justifyContent: "space-between",
+        width: "45%",
+        alignItems: "center",
+        gap: 8,
+        paddingRight: 10,
+        ...style,
+      }}
+    >
+      <label style={{ 
+        fontWeight: "normal",
+        color: darkMode ? "#fff" : "#000",
+        transition: "color 0.3s ease"
+      }}>
+        {propertyName}
+      </label>
+      <input
+        type="color"
+        value={value}
+        onChange={onChange}
+        placeholder="px"
+        style={{
+          height: "100%",
+          width: "60%",
+          padding: 4,
+          borderRadius: 6,
+          border: "none",
+          backgroundColor: darkMode ? "#4a5568" : "#ccc",
+          fontWeight: "bold",
+          fontSize: 16,
+          color: darkMode ? "#fff" : "#000",
+          boxSizing: "border-box",
+          transition: "background-color 0.3s ease, color 0.3s ease"
+        }}
+      />
+    </div>
+  )
+}

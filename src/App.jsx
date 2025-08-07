@@ -4,6 +4,8 @@ import { LayoutOptions } from "./layout.jsx";
 import { SizingOptions } from "./sizing.jsx";
 import { SpacingOptions } from "./spacing.jsx";
 import "./App.css";
+import { PositionOptions } from "./position.jsx";
+import { BorderOptions } from "./border.jsx";
 
 export default function App() {
   const [projectName, setProjectName] = useState("");
@@ -86,7 +88,10 @@ export default function App() {
                 <SizingOptions darkMode={darkMode} />
                 <div style={{ borderTop: darkMode ? "1px solid #4a5568" : "1px solid #eee", margin: "16px 0", transition: "border-color 0.3s ease" }} />
                 <SpacingOptions darkMode={darkMode} />
-                {/* Add Position and Border sections here if needed */}
+                <div style={{ borderTop: darkMode ? "1px solid #4a5568" : "1px solid #eee", margin: "16px 0", transition: "border-color 0.3s ease" }} />
+                <PositionOptions darkMode={darkMode} />
+                <div style={{ borderTop: darkMode ? "1px solid #4a5568" : "1px solid #eee", margin: "16px 0", transition: "border-color 0.3s ease" }} />
+                <BorderOptions darkMode={darkMode} />
               </div>
             </div>
             <button className="generate-css-btn">
