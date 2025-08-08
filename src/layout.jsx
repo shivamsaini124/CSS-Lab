@@ -1,25 +1,32 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { DropDownSelector, ButtonSelector, InputBox } from "./selector.jsx";
 import { Title } from "./extras.jsx";
+import {styleContext} from "./context.jsx"
 
 // Flexbox layout options component
 const FlexLayoutOptions = ({ darkMode = false }) => {
+    const {style, setStyle} = useContext(styleContext);
+
     const options = {
         justifyContent: ["Center", "Start", "End", "Space Between"],
         alignItem: ["Center", "Start", "End", "Stretch"],
         alignContent: ["Center", "Start", "End", "Stretch"],
         wrap: ["No Wrap", "Wrap", "Wrap Reverse"],
         directions: [
-            { icon: "→", value: "right" },
-            { icon: "↓", value: "down" },
-            { icon: "←", value: "left" },
-            { icon: "↑", value: "up" }
+            { icon: "→", value: "row" },
+            { icon: "↓", value: "column" },
+            { icon: "←", value: "row-reverse" },
+            { icon: "↑", value: "column-reverse" }
         ]
     };
 
     return (
         <div>
-            <ButtonSelector propertyName={"Direction"} options={options.directions} darkMode={darkMode} />
+            <ButtonSelector propertyName={"Direction"} options={options.directions} darkMode={darkMode} updateStyle={(val)=> {
+                const newStyle = {...style};
+                newStyle.layout.flex.flexDirection = val;
+                setStyle(newStyle);
+            }}/>
             <DropDownSelector propertyName={"Justify Content"} options={options.justifyContent} darkMode={darkMode} />
             <DropDownSelector propertyName={"Align Item"} options={options.alignItem} darkMode={darkMode} />
             <DropDownSelector propertyName={"Align Content"} options={options.alignContent} darkMode={darkMode} />

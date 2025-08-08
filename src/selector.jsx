@@ -49,11 +49,12 @@ export const DropDownSelector = ({ propertyName, options, state, setState, darkM
 };
 
 // 🔘 Button Selector Component
-export const ButtonSelector = ({ propertyName, options, state, setState, darkMode = false }) => {
+export const ButtonSelector = ({ propertyName, options, state, setState, darkMode = false, updateStyle}) => {
   const [localValue, setLocalValue] = useState(options[0].value);
   const value = state !== undefined ? state : localValue;
   const handleClick = (val) => {
     setState ? setState(val) : setLocalValue(val);
+    updateStyle(val);
   };
 
   return (
