@@ -1,10 +1,10 @@
-import { StrictMode } from 'react'
+import { StrictMode, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import {styleContext} from "./context.jsx"
 
-const style = {
+const defaultStyle = {
   layout: {
     display: "flex",
     flex: {
@@ -54,10 +54,17 @@ const style = {
   }
 };
 
+function Root() {
+  const [style, setStyle] = useState(defaultStyle);
+  return (
+    <StrictMode>
+      <styleContext.Provider value={{ style, setStyle }}>
+        <App />
+      </styleContext.Provider>
+    </StrictMode>
+  );
+}
+
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <styleContext.Provider value={style}>
-      <App />
-    </styleContext.Provider>
-  </StrictMode>,
-)
+  <Root />
+);
