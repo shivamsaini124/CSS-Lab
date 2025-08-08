@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { ButtonSelector, DropDownSelector } from "./selector.jsx";
 import { LayoutOptions } from "./layout.jsx";
 import { SizingOptions } from "./sizing.jsx";
@@ -6,13 +6,23 @@ import { SpacingOptions } from "./spacing.jsx";
 import "./App.css";
 import { PositionOptions } from "./position.jsx";
 import { BorderOptions } from "./border.jsx";
+import { Preview } from "./preview.jsx";
+import { styleContext } from "./context.jsx";
+import { createCSS, parseStyle } from "./main.jsx";
 
 export default function App() {
+
+  const {style, setStyle} = useContext(styleContext);
+
   const [projectName, setProjectName] = useState("");
   const [darkMode, setDarkMode] = useState(localStorage.getItem("darkMode") === "true" ? true :false);
   const [selectedElement, setSelectedElement] = useState("");
   // Placeholder for generated CSS
-  const [cssCode] = useState("/* CSS code will appear here */");
+  const [cssCode, setCssCode] = useState("/* CSS code will appear here */");
+
+  useEffect(()=> {
+    setCssCode(createCSS(parseStyle(style)));
+  }, [style])
 
   // Effect to manage body class for dark mode
   useEffect(() => {
@@ -54,7 +64,7 @@ export default function App() {
         {/* Left Column: Preview + Code Panel */}
         <div className="left-column">
           <div className="preview-area">
-            <div className="preview-box" />
+            <Preview/>
           </div>
           <div className="code-header">CSS Code</div>
           {/* CSS Code Panel at the bottom left */}
