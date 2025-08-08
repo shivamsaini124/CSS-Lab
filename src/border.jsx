@@ -16,7 +16,7 @@ export const BorderOptions = ({darkMode = false}) => {
 
             <DropDownSelector
                 propertyName={"Style"}
-                options={["Solid", "Dotted", "Right", "Bottom", "Left"]}
+                options={["solid","dashed","dotted","inset","outset"]}
                 darkMode={darkMode}
             />
             
