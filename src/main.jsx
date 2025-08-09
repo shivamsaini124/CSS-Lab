@@ -2,7 +2,7 @@ import { StrictMode, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
-import {styleContext} from "./context.jsx"
+import { StyleProvider } from "./context.jsx"
 
 export function createCSS(styleObj) {
   function toKebabCase(str) {
@@ -115,12 +115,11 @@ export function sanitizeStyleForContainer(flatStyle) {
 
 
 function Root() {
-  const [style, setStyle] = useState(defaultStyle);
   return (
     <StrictMode>
-      <styleContext.Provider value={{ style, setStyle }}>
+      <StyleProvider initialStyle={defaultStyle}>
         <App />
-      </styleContext.Provider>
+      </StyleProvider>
     </StrictMode>
   );
 }
