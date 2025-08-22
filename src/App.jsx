@@ -12,17 +12,17 @@ import { createCSS, parseStyle } from "./main.jsx";
 
 export default function App() {
 
-  const {style, setStyle} = useContext(styleContext);
+  const { style, setStyle, generatedCSS, setGeneratedCSS, exportCSS, copyCSS } = useContext(styleContext);
 
   const [projectName, setProjectName] = useState("");
   const [darkMode, setDarkMode] = useState(localStorage.getItem("darkMode") === "true" ? true :false);
   const [selectedElement, setSelectedElement] = useState("");
-  // Placeholder for generated CSS
-  const [cssCode, setCssCode] = useState("/* CSS code will appear here */");
-
-  useEffect(()=> {
-    setCssCode(createCSS(parseStyle(style)));
-  }, [style])
+  // Use generatedCSS from context instead of local state
+  const [cssCode, setCssCode] = useState(generatedCSS || "/* CSS code will appear here */");
+  // Add state to track when preview should update - will contain the current context style
+  const [previewStyle, setPreviewStyle] = useState({});
+  // Add state to track copy feedback
+  const [copyFeedback, setCopyFeedback] = useState(false);
 
   // Effect to manage body class for dark mode
   useEffect(() => {
@@ -32,6 +32,63 @@ export default function App() {
       document.body.classList.remove('dark-mode');
     }
   }, [darkMode]);
+
+  // Sync with context generatedCSS
+  useEffect(() => {
+    if (generatedCSS) {
+      setCssCode(generatedCSS);
+    }
+  }, [generatedCSS]);
+
+  const handleExportCSS = async () => {
+    if (exportCSS) {
+      const success = exportCSS();
+      if (success) {
+        // Could add a toast notification here
+        console.log('CSS exported successfully');
+      }
+    }
+  };
+
+  const handleCopyCSS = async () => {
+    if (copyCSS) {
+      const success = await copyCSS();
+      if (success) {
+        // Could add a toast notification here
+        console.log('CSS copied to clipboard');
+        setCopyFeedback(true);
+        setTimeout(() => {
+          setCopyFeedback(false);
+        }, 2000);
+      }
+    }
+  };
+
+  const handleGenerateCSS = () => {
+    // This button now serves as a manual refresh/regenerate
+    // The CSS is already being generated automatically via useEffect
+    const currentStyle = Object.keys(style).length > 0 ? style : {
+      layout: { display: "flex" },
+      sizing: { width: "100px", height: "100px" },
+      spacing: { padding: "10px" },
+      border: { borderWidth: "1px", borderStyle: "solid", borderColor: "#000000" },
+      extras: { backgroundColor: "#ffffff" }
+    };
+    
+    const newCssCode = createCSS(parseStyle(currentStyle));
+    setCssCode(newCssCode);
+    
+    // Update the context's generatedCSS as well
+    if (setGeneratedCSS) {
+      setGeneratedCSS(newCssCode);
+    }
+    
+    // Update the preview style with the current context style
+    setPreviewStyle(style);
+    
+    // Provide feedback that manual generation occurred
+    console.log('CSS manually regenerated:', newCssCode);
+  };
 
   return (
     <div className={`app-container ${darkMode ? 'dark-mode' : ''}`}>
@@ -64,9 +121,46 @@ export default function App() {
         {/* Left Column: Preview + Code Panel */}
         <div className="left-column">
           <div className="preview-area">
-            <Preview/>
+            <Preview darkMode={darkMode} style={previewStyle} />
           </div>
-          <div className="code-header">CSS Code</div>
+          <div className="code-header">
+            CSS Code
+            <div className="css-actions" style={{ 
+              display: 'flex', 
+              gap: '8px', 
+              marginLeft: 'auto',
+              fontSize: '12px'
+            }}>
+              <button 
+                onClick={handleCopyCSS}
+                style={{
+                  padding: '4px 8px',
+                  backgroundColor: '#4299e1',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                  fontSize: '11px'
+                }}
+              >
+                {copyFeedback ? "Copied!" : "Copy"}
+              </button>
+              <button 
+                onClick={handleExportCSS}
+                style={{
+                  padding: '4px 8px',
+                  backgroundColor: '#38b2ac',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                  fontSize: '11px'
+                }}
+              >
+                Export
+              </button>
+            </div>
+          </div>
           {/* CSS Code Panel at the bottom left */}
           <div className="code-panel">
             <div className="code-output">
@@ -104,7 +198,10 @@ export default function App() {
                 <BorderOptions darkMode={darkMode} />
               </div>
             </div>
-            <button className="generate-css-btn">
+            <button 
+              className="generate-css-btn"
+              onClick={handleGenerateCSS}
+            >
               Generate CSS
             </button>
           </aside>

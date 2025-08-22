@@ -110,7 +110,7 @@ export const InputBox = ({ propertyName, value, onChange, style, darkMode = fals
         {propertyName}
       </label>
       <input
-        type="number"
+        type="text"
         value={value}
         onChange={onChange}
         placeholder="px"
@@ -158,7 +158,7 @@ export const InputBoxSmall = ({ propertyName, value, onChange, style, darkMode =
         {propertyName}
       </label>
       <input
-        type="number"
+        type="text"
         value={value}
         onChange={handleChange}
         placeholder="px"
