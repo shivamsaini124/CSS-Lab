@@ -116,7 +116,7 @@ export default function App() {
           <div className="preview-area">
             <Preview darkMode={darkMode} style={previewStyle} />
           </div>
-          <div style={{backgroundColor: "#2d3748"}}>
+          <div style={{}}>
             <div className="code-header">
               CSS Code
               <div className="css-actions" style={{ 
