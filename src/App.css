@@ -15,6 +15,8 @@ body.dark-mode {
   flex-direction: column;
   height: 100vh;
   transition: background-color 0.3s ease;
+  max-height: 100vh;
+  overflow: hidden;
 }
 
 .app-header {
@@ -109,11 +111,10 @@ body.dark-mode {
   background-color: #c7e0ff;
   display: flex;
   flex: 1;
-  overflow: hidden;
-  height: calc(100vh - 72px); /* header height */
-  min-height: 0;
   transition: background-color 0.3s ease;
 }
+
+
 
 .app-container.dark-mode .main-content {
   background-color: #2d3748;
@@ -124,8 +125,7 @@ body.dark-mode {
   flex-direction: column;
   flex: 1 1 0;
   min-width: 0;
-  height: 100%;
-  min-height: 0;
+  min-height: calc(100vh - 72px);
 }
 
 .preview-area {
@@ -163,13 +163,12 @@ body.dark-mode {
 .sidebar-column {
   display: flex;
   flex-direction: column;
-  height: 100%;
   min-width: 395px;
   width: 30%;
   box-sizing: border-box;
-  overflow: hidden;
+  overflow: visible;
   flex-shrink: 0;
-  min-height: 0;
+  min-height: calc(100vh - 72px);
   transition: background-color 0.3s ease;
 }
 
@@ -237,6 +236,7 @@ body.dark-mode {
   width:90px;
   box-shadow: 0 2px 8px #0001;
   transition: background-color 0.3s ease, color 0.3s ease;
+  margin-top: 10px;
 }
 
 /* Dark mode CSS options header styles */
@@ -289,8 +289,8 @@ body.dark-mode {
 .code-panel {
   background: #001f4d;
   color: white;
-  padding: 12px 24px;
-  height: 150px;
+  padding: 12px 12px;
+  height: max-content;
   flex-shrink: 0;
   border-top: 1px solid #001540;
   border-radius: 0;
@@ -310,13 +310,17 @@ body.dark-mode {
   font-weight: bold;
   color:white;
   background: #001f4d;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
   padding: 4px 18px;
   border-radius: 15px 15px 0 0;
   position: relative;
   left: 20px;
   width: 100px;
   transition: background-color 0.3s ease;
+  z-index: 2;
 }
 
 /* Dark mode code header styles */
@@ -326,7 +330,7 @@ body.dark-mode {
 
 .code-output {
   background: #001540;
-  height: 100%;
+  height: 140px;
   padding: 12px;
   border-radius: 8px;
   transition: background-color 0.3s ease;
@@ -336,4 +340,60 @@ body.dark-mode {
 /* Dark mode code output styles */
 .app-container.dark-mode .code-output {
   background: #2d3748;
+}
+
+
+@media (max-width: 800px) {
+  .main-content {
+    flex-direction: column;
+    overflow-y: scroll;
+  }
+  .sidebar-column {
+    width: 100%;
+    min-width: 0;
+    flex-shrink: 0;
+    border-top: 1px solid #ddd;
+
+  }
+
+  .sidebar {
+    overflow-y: visible;
+    height: max-content;
+  }
+
+  .left-column {
+    min-height: 80vh;
+  }
+
+  .sidebar-column{
+    border: none;
+    margin-top: 20px;
+    height:max-content;
+    padding-bottom: 20px;
+    min-height: max-content;
+  }
+
+  .code-panel{
+    height: max-content;
+  }
+
+  .code-output{
+    height: 150px;
+  }
+
+  .css-actions{
+    padding-left:20px;
+  }
+
+  .css-actions button{
+    margin-top:3px;
+    margin-bottom: 3px;
+  }
+
+  .code-header{
+    flex-direction: row;
+    width: max-content;
+    align-content: center;
+    align-items: center;
+  }
 }

@@ -88,7 +88,8 @@ export const Preview = ({ darkMode = false, style: manualStyle = {} }) => {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      transition: 'background-color 0.3s ease, border-color 0.3s ease'
+      transition: 'background-color 0.3s ease, border-color 0.3s ease',
+      height: "inherit"
     }}>
       <div className="styled-element" style={appliedStyle}>
         <div style={textStyles.title}>

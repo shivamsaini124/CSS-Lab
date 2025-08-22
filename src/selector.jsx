@@ -132,11 +132,7 @@ export const InputBox = ({ propertyName, value, onChange, style, darkMode = fals
 };
 
 // 🔳 Small Input Box
-export const InputBoxSmall = ({ propertyName, value, onChange, style, darkMode = false , updateStyle}) => {
-  const handleChange = (e) => {
-    if(onChange) onChange();
-    updateStyle(e.target.value);
-  }
+export const InputBoxSmall = ({ propertyName, value, onChange, style, darkMode = false }) => {
   return (
     <div
       style={{
@@ -160,7 +156,7 @@ export const InputBoxSmall = ({ propertyName, value, onChange, style, darkMode =
       <input
         type="text"
         value={value}
-        onChange={handleChange}
+        onChange={onChange}
         placeholder="px"
         style={{
           width: "60%",

@@ -98,13 +98,6 @@ export default function App() {
           <div className="logo-circle" />
           <span className="logo-text">CSS Labs</span>
         </div>
-        <input
-          className="project-input"
-          type="text"
-          placeholder="Project Name"
-          value={projectName}
-          onChange={e => setProjectName(e.target.value)}
-        />
         <button
           className="dark-mode-toggle"
           onClick={() => setDarkMode((dm) => {
@@ -123,67 +116,57 @@ export default function App() {
           <div className="preview-area">
             <Preview darkMode={darkMode} style={previewStyle} />
           </div>
-          <div className="code-header">
-            CSS Code
-            <div className="css-actions" style={{ 
-              display: 'flex', 
-              gap: '8px', 
-              marginLeft: 'auto',
-              fontSize: '12px'
-            }}>
-              <button 
-                onClick={handleCopyCSS}
-                style={{
-                  padding: '4px 8px',
-                  backgroundColor: '#4299e1',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '4px',
-                  cursor: 'pointer',
-                  fontSize: '11px'
-                }}
-              >
-                {copyFeedback ? "Copied!" : "Copy"}
-              </button>
-              <button 
-                onClick={handleExportCSS}
-                style={{
-                  padding: '4px 8px',
-                  backgroundColor: '#38b2ac',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '4px',
-                  cursor: 'pointer',
-                  fontSize: '11px'
-                }}
-              >
-                Export
-              </button>
+          <div style={{backgroundColor: "#2d3748"}}>
+            <div className="code-header">
+              CSS Code
+              <div className="css-actions" style={{ 
+                display: 'flex', 
+                gap: '8px', 
+                marginLeft: 'auto',
+                fontSize: '12px'
+              }}>
+                <button 
+                  onClick={handleCopyCSS}
+                  style={{
+                    padding: '4px 8px',
+                    backgroundColor: '#4299e1',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '4px',
+                    cursor: 'pointer',
+                    fontSize: '11px'
+                  }}
+                >
+                  {copyFeedback ? "Copied!" : "Copy"}
+                </button>
+                <button 
+                  onClick={handleExportCSS}
+                  style={{
+                    padding: '4px 8px',
+                    backgroundColor: '#38b2ac',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '4px',
+                    cursor: 'pointer',
+                    fontSize: '11px'
+                  }}
+                >
+                  Export
+                </button>
+              </div>
+            </div>
+            {/* CSS Code Panel at the bottom left */}
+            <div className="code-panel">
+              <div className="code-output">
+                <pre style={{ margin: 0, color: "#fff" }}>{cssCode}</pre>
+              </div>
             </div>
           </div>
-          {/* CSS Code Panel at the bottom left */}
-          <div className="code-panel">
-            <div className="code-output">
-              <pre style={{ margin: 0, color: "#fff" }}>{cssCode}</pre>
-            </div>
-          </div>
+          
         </div>
         {/* Sidebar (CSS Generator) */}
         <div className="sidebar-column">
           <aside className="sidebar">
-            <div>
-              <select
-                className="select-element"
-                value={selectedElement}
-                onChange={e => setSelectedElement(e.target.value)}
-              >
-                <option value="" disabled>
-                  Select the element to style
-                </option>
-                <option value="element1">Element 1</option>
-                <option value="element2">Element 2</option>
-              </select>
-            </div>
             <div className="css-options-header">CSS Options</div>
             <div className="css-options-container">
               <div className="css-section">

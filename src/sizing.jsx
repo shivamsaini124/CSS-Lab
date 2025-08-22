@@ -30,11 +30,6 @@ export const SizingOptions = ({ darkMode = false }) => {
             {/* Sizing Header */}
             <Title sectionName={"Sizing"} darkMode={darkMode}/>
             
-            <InputBoxSmall propertyName={"Height"} darkMode={darkMode} updateStyle={(val)=>{
-                const newStyle = {...style};
-                newStyle.sizing.height = val + "px";
-                setStyle(newStyle);
-            }}/>
             <InputBoxSmall 
                 propertyName={"Height"} 
                 darkMode={darkMode}
